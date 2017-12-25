@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>计算机网络的那些事（OSI模型&amp;互联网协议）</title>
+  <meta name="author" content="Celine Wong">
+  <meta name="description" content="计算机网络的那些事（OSI模型&amp;amp;互联网协议）
+本意是想了解下http协议的，发现对以前学习的计算机网络忘得差不多了。于是乎就重新学习了个。网上的文章有些很书本化的叨叨，没看进去，刚好看到阮叔的两篇很不错——[互联网协议（一）][1]和互联网协议（二）。原文已经很通俗易懂的描述整个模型的来龙去">
+  
+  
+  <meta property="og:title" content="计算机网络的那些事（OSI模型&amp;互联网协议）"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Celine&#39;s Blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Celine&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="behind">
+      <a href="/" class="back black-color">
+        <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M2 30 L30 2 M30 30 L2 2"></path>
+        </svg>
+      </a>
+      <div class="description">
+        &nbsp;
+      </div>
+    </div>
+    <div class="container">
+      
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        计算机网络的那些事（OSI模型&amp;互联网协议）
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      
+<time datetime="2017-12-25T03:03:27.000Z">
+<svg class="i-calendar" viewBox="0 0 32 32" width="14" height="14" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2017-12-25
+</time>
+
+
+
+
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="14" height="14" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/tags/计算机网络-osi-tcp/">计算机网络,osi,tcp</a>
+
+
+    </div>
+    <hr>
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="计算机网络的那些事（OSI模型-amp-互联网协议）"><a href="#计算机网络的那些事（OSI模型-amp-互联网协议）" class="headerlink" title="计算机网络的那些事（OSI模型&amp;互联网协议）"></a>计算机网络的那些事（OSI模型&amp;互联网协议）</h1><hr>
+<p>本意是想了解下http协议的，发现对以前学习的计算机网络忘得差不多了。于是乎就重新学习了个。网上的文章有些很书本化的叨叨，没看进去，刚好看到阮叔的两篇很不错——[互联网协议（一）][1]和<a href="http://www.ruanyifeng.com/blog/2012/06/internet_protocol_suite_part_ii.html" target="_blank" rel="noopener">互联网协议（二）</a>。<br>原文已经很通俗易懂的描述整个模型的来龙去脉，这里同样是自己做个总结和整理（图文均参考自上面两篇）。</p>
+<h2 id="1-前面的话"><a href="#1-前面的话" class="headerlink" title="1 前面的话"></a>1 前面的话</h2><h3 id="1-1-OSI七层模型"><a href="#1-1-OSI七层模型" class="headerlink" title="1.1 OSI七层模型"></a>1.1 OSI七层模型</h3><p>OSI：Open System Interconnection，开放系统互联。顾名思义，就是国际标准化组织（ISO，International Standard Organization）定义的关于不同计算机互联的标准。</p>
+<p>OSI模型中，把网络通信分为7层，从下（接近硬件）到上（接近用户）分别是：<em>物理层（Physical layer）、数据链路层（Data-link layer）、网络层（Network layer），传输层（Transport layer）、会话层（Session layer）、表示层（Presentation layer）和应用层（Application layer）</em>。</p>
+<p>分层的意义在于：</p>
+<blockquote>
+<ul>
+<li>每一层都是为了完成某一种功能，同一层要遵守共同规则——也就是协议（Protocol）；</li>
+<li>和楼层类似，互联网的分层，每一层都要靠下一层来提供服务</li>
+</ul>
+</blockquote>
+<h3 id="1-2-TCP-IP-五层模型"><a href="#1-2-TCP-IP-五层模型" class="headerlink" title="1.2 TCP/IP 五层模型"></a>1.2 TCP/IP 五层模型</h3><p>除了OSI的七层模型，常见的还有TCP/IP的五层模型（阮叔文章用的就是五层模型），五层模型把 <em>会话层</em> 和 <em>表示层</em> 直接包含到应用层当中，即：<em>物理层、数据链路层、网络层、传输层、应用层</em>。</p>
+<p>借用阮叔一张图，更直观些:<br><img src="http://image.beekka.com/blog/201205/bg2012052902.png" alt="五层模型"></p>
+<h2 id="2-每一层都在干什么？"><a href="#2-每一层都在干什么？" class="headerlink" title="2 每一层都在干什么？"></a>2 每一层都在干什么？</h2><p>既然知道了大概分层，接下来我们就看看每一层都在做些什么事，它们之间有什么联系和区别。<br>下面我们从最底层开始：</p>
+<h3 id="2-1-物理层"><a href="#2-1-物理层" class="headerlink" title="2.1 物理层"></a>2.1 物理层</h3><p>物理层，也被叫做实体层。</p>
+<p>电脑组网，首先得把它们连接起来，连接的方式可以用光缆（类似于光纤入户的光纤）、电缆（电传播）、双绞线（我们常说的网线、水晶头），还有现在最常用的无线电波（无线网wifi）等等。</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>所以在物理层，负责把电脑连接起来，主要规定了网络的电气特性（就是跟连接工具传输相关的一些特征），在这一层传送的是0和1这样的电信号。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="2-2-数据链接层"><a href="#2-2-数据链接层" class="headerlink" title="2.2 数据链接层"></a>2.2 数据链接层</h3><p>通过物理层，获得0和1的信号，但单纯的0、1毫无意义，这时候就需要确定解读0、1的方式，对电信号进行分组——<strong>以太网协议</strong>。</p>
+<p>以太网协议规定：一组电信号构成一个数据包，叫做“帧”（Frame）。每一帧包含标头（Head）和数据（Data）两部分。<br><img src="http://image.beekka.com/blog/201205/bg2012052909.png" alt="以太网数据包"></p>
+<blockquote>
+<p><strong>标头</strong>：包含数据包的说明项，比如发送者、接受者、数据类型等等。固定长度18字节。<br><strong>数据</strong>：则包含数据包的具体内容。长度46字节 - 1500字节。</p>
+</blockquote>
+<p>既然这样一个“帧”的标头包含发送者和接受者，那这两者是怎么标识的呢？—— <strong>MAC地址</strong>。</p>
+<p>喜欢上网的我们，有个器件肯定熟悉，那就是“网卡”，即使没有见到电路板，也经常在安装系统时候会安装网卡驱动。而MAC地址就是每一块网卡的惟一ID。它一般随出厂印在了芯片上，数据格式模样大概长下面那样（又盗用下阮叔的图）：<br><img src="http://image.beekka.com/blog/201205/bg2012052906.png" alt="MAC地址数据格式 00-B0-D0-86-BB-F7"></p>
+<p>有了MAC地址，就可以定向传递数据了。但网卡A怎么知道网卡B的地址呢？这个就留待后面ARP协议来分析。眼下我们假设网卡A已经知道了网卡B的地址，但笨拙的物理层并做不到分辨MAC地址这种事情，所以采用了一种很淳朴的方式——<strong>广播</strong>。<br>电脑A要发送给电脑B，电脑A不管三七二十一，直接给组网的所有电脑都发送了数据包，由各个电脑成员自己去分析这个数据包是不是发给自己的。如果是，就留下；如果不是，假装没看见这个数据包（丢弃数据包）。</p>
+<p><em>TIPS：广播的方式，是早期集线器（Hub）经典发送数据方式。后来有了交换机，交换机比较聪明：如果电脑A和B是第一次通信，那就只能广播下，但这之后，交换机会记住电脑A和B的这条通信连线，下一次A和B通信就可以直接走这条线。——慢慢就得到了内部MAC地址表。</em></p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>总结下数据链路层，负责把0、1电信号通过<strong>以太网协议</strong>（按照报头和数据两部分）进行分组，借助网卡中的<strong>MAC地</strong>址实现一对一的数据传送。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="2-3-网络层"><a href="#2-3-网络层" class="headerlink" title="2.3 网络层"></a>2.3 网络层</h3><p>在数据链路层，已经有MAC地址，按理应该可以实现任何两台电脑传播。但实际上，靠MAC地址只能实现同一个<strong>子网络</strong>内的电的数据传输，不同的子网络之间必须通过<strong>路由</strong>（原理未知，代以后探究）。<br>这就好比，世界这么大，楼房那么多，为了方便分类管理，我们一般都会划分小区（子网络），同一个小区靠楼栋门牌号（MAC地址）就可以找到具体户主了，但是不同小区仅靠门牌号就没有用了。</p>
+<p><strong>网络层</strong>的出现就是为了判断要通信的计算机是不是属于同一个子网络。为此，引入了新的标识地址——网络地址（简称网址，IP地址）。</p>
+<p><strong>IP地址</strong>大家都眼熟，它是由IP协议规定的地址。现在主要是采用IP协议第四版（IPv4）的规定，具体格式如下图（来源软叔）：<br><img src="http://image.beekka.com/blog/201205/bg2012052908.png" alt="IP地址数据格式"><br>如上图，IP地址分成四段，范围0.0.0.0-255.255.255.255。IP地址分两部分：代表网络部分（一般前两段(16位)或前三段（24位））和代表主机部分（最后两段（24位）或一段（8位））。相同子网络的IP地址，网络部分必定相同。</p>
+<p>然而这台主机的IP地址中的网络部分到底是前两段还是前三段呢？这就需要另外一个东西<strong>“子网掩码”(subnet mask)</strong>来辅助判断了。</p>
+<p>子网掩码的数据格式和IP地址类似，也分为四段（32位）。它的特征是：网络部分全部是1，主机部分全部是0。比如，IP地址是192.168.0.123，如果前24位是网络部分，后8位是主机部分，那子网掩码就会是255.255.255.0（转换成二进制就是：11111111.11111111.11111111.00000000）。<br>所以，判断两个IP地址是否是在同一个子网络，需要将IP地址和子网掩码进行与运算（AND），然后再比较运算后的结果。</p>
+<p>既然已经上升到网络层了，传输的数据包需要包含<strong>IP数据包</strong>（同样包含标头和数据）。在数据链路层，我们知道以太网协议的数据包包含标头和数据，那IP数据包自然就放在其中的数据位置了。所以整个数据包就变成了包含以太网协议标头、IP协议标头、数据。<br><img src="http://image.beekka.com/blog/201205/bg2012052910.png" alt="IP数据包"></p>
+<p><em>补充<strong>ARP协议</strong>：</em><br>ARP:Address Resolution Protocol,地址解析协议。<br>我们知道，现在的数据包包含两类地址——MAC地址和IP地址。一般情况下，对方的IP地址是已知的（之后查到原理再补充进来，这里直接用结论），但对方的MAC地址是未知的。这时候，我们就想通过IP地址来获取MAC地址。<br>（1）如果两台主机不再一个子网络，那只能通过连接两个子网络的“网关”（gateway）处理了，这个不表。<br>（2）如果在同一个子网路，ARP协议就派上用场了。ARP协议发出一个数据包（同样包含在以太网数据包中），里面包含已知的对方IP地址，而对方MAC地址未知，就写上是FF:FF:FF:FF:FF:FF,来表示这是一个“广播”地址。数据包以广播方式发送出去后，各个主机提取里面的IP地址和自己的比对，相同就做出回复，把自己的MAC地址发送回去，否则就丢弃这个数据包。</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>老样子，来总结下网络层的工作：为了确定两个主机是否在一个子网络，出现了<strong>IP地址</strong>，IP地址有一部分代表网络部分，这部分相同则说明在同一个子网络；而<strong>子网掩码</strong>是为了确定IP地址哪一部分属于网络部分。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>最后补充一张我们无比眼熟的TCP/IP协议属性设置图，就可以看到我们提及到的IP地址和子网掩码。<br><img src="http://image.beekka.com/blog/201206/bg2012061111.png" alt="ICP/ip属性设置图"></p>
+<h3 id="2-4-传输层"><a href="#2-4-传输层" class="headerlink" title="2.4 传输层"></a>2.4 传输层</h3><p>通过上面的几层，我们已经能实现主机和主机之间的通信了。但回想下我们玩电脑，开网页、开QQ、开视频……那请问接收到的数据包到底是要送到网页显示还是qq聊天窗口还是视频窗口呢？<br>所以我们需要一个参数来确定接收到的数据包是归属哪个进程（进程就是指，我们正在使用的一些程序，比如浏览器、qq等）。<br>这个参数就是<strong>“端口”</strong>——也就是每一个使用网卡的程序的编号。</p>
+<p>端口是一个0-65535之间的整数，当你启动一个程序（比如qq），系统会随机分配一个端口号给它。</p>
+<p>由此可见，我们还需要在传输的数据包里添加一个端口信息。有两种协议可以实现——UDP协议和TCP协议。</p>
+<h4 id="（1）UDP协议"><a href="#（1）UDP协议" class="headerlink" title="（1）UDP协议"></a>（1）UDP协议</h4><p>UDP：User Datagram Protocol，用户数据包格式。<br>UDP数据包一样有 <em>标头</em> 和 <em>数据</em> 两部分，标头里就是发出端口和接收端口。把UDP数据包融入到IP数据包的“数据”位置，就形成下图的结构<br><img src="http://image.beekka.com/blog/201205/bg2012052912.png" alt="添加UDP数据包后的传输数据包格式"><br>UDP协议优点：简单、易实现；缺点是：可靠性差，数据发送后，不能知道对方是否收到。因此就有了TCP协议。</p>
+<h4 id="（2）TCP协议"><a href="#（2）TCP协议" class="headerlink" title="（2）TCP协议"></a>（2）TCP协议</h4><p>TCP：Transmission Control Protocol，传输控制协议。<br>为了弥补UDP协议的缺陷，TCP协议时带有确认机制的，也就是说发送数据包后，需要对方返回确认收到信息，若没有确认信息，就会重新发送数据包。<br>TCP数据包格式和UDP数据包格式类似。不过真正的实现过程较为复杂、小号的资源也比较多（有机会再单独看下这个协议实现方式吧）。</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>小结下，网络层提供的是“主机到主机”的通信；而传输层提供了“端口到端口”的通信。有了端口，就能实现具体程序与程序之间的通信了。添加端口的协议有UDP协议和TCP协议，UDP简单不可靠、TCP可靠不简单。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="5-应用层"><a href="#5-应用层" class="headerlink" title="5 应用层"></a>5 应用层</h3><p>经过了前面的层层推送，终于抵达了和用户直接相关的应用程序。通过IP地址+MAC地址+端口，我们已经成功让我们使用的某个程序（还是qq吧）收到了数据包，但接下来的重点就是怎么解读这个数据包呢？除了qq，还有邮件、网页等，他们的数据包解读方式一样么？<br>答案当然是不一样的，因为它们的功用不同，需要的数据也不一样，所以不同的应用程序就会有不同的协议太规定其数据格式。通过应用层的一包装，传输的数据包格式就转变成下图这个样子了：<br><img src="http://image.beekka.com/blog/201205/bg2012052913.png" alt="应用层数据包"></p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>这就是应用层，专门规定应用程序的数据格式。</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>以上，就是简略的描述了五层结构怎样一步一步推荐，一步一步增添自己需求的。<br>最后通过一个表格来做一个小结（顺便练习markdown表格语法(^o^)/~）。</p>
+<table>
+<thead>
+<tr>
+<th>分层模型</th>
+<th>功能简述</th>
+<th>相关协议</th>
+<th>网络设备</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>文件传输、电子邮件、文件服务、虚拟终端</td>
+<td>HTTP ,SNMP,SMTP,FTP,TFTP,Telnet</td>
+<td></td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>端口对端口通信</td>
+<td>UDP,TCP</td>
+<td>四层交换机</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络地址(IP地址)，选择路由</td>
+<td>IP,ICMP,RIP,OSPF,BGP,IGMP</td>
+<td>路由器，三层交换机</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>带有MAC地址的帧</td>
+<td>ARP,RARP,MTU,SLIP,CSLIP,PPP</td>
+<td>网桥、以太网交换机、网卡</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>二进制数据在物理媒介上传输</td>
+<td>IEEE902，ISO2110</td>
+<td>中继器、集线器、双绞线、光缆、无线</td>
+</tr>
+</tbody>
+</table>
+
+
+  </article>
+  </script>
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot container">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © Celine 2017-2020
+    </div>
+    <div class="secondrow">
+        <a href="https://github.com/gaoryrt/hexo-theme-pln">
+        Theme Pln
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>
