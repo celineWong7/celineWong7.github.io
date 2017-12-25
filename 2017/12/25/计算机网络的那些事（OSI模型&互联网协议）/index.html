@@ -9,7 +9,8 @@
   
   <title>计算机网络的那些事（OSI模型&amp;互联网协议）</title>
   <meta name="author" content="Celine Wong">
-  <meta name="description" content="本意是想了解下http协议的，发现对以前学习的计算机网络忘得差不多了。于是乎就重新学习了个。网上的文章有些很书本化的叨叨，没看进去，刚好看到阮叔的两篇很不错——[互联网协议（一）][1]和互联网协议（二）。原文已经很通俗易懂的描述整个模型的来龙去脉，这里同样是自己做个总结和整理（图文均参考自上面两篇">
+  <meta name="description" content="本意是想了解下http协议的，发现对以前学习的计算机网络忘得差不多了。于是乎就重新学习了个。网上的文章有些很书本化的叨叨，没看进去，刚好看到阮叔的两篇很不错——互联网协议（一）和互联网协议（二）。原文已经很通俗易懂的描述整个模型的来龙去脉，这里同样是自己做个总结和整理（图文均参考自上面两篇）。
+1 ">
   
   
   <meta property="og:title" content="计算机网络的那些事（OSI模型&amp;互联网协议）"/>
@@ -79,26 +80,24 @@
     <div class="picture-container">
       
     </div>
-    <p>本意是想了解下http协议的，发现对以前学习的计算机网络忘得差不多了。于是乎就重新学习了个。网上的文章有些很书本化的叨叨，没看进去，刚好看到阮叔的两篇很不错——[互联网协议（一）][1]和<a href="http://www.ruanyifeng.com/blog/2012/06/internet_protocol_suite_part_ii.html" target="_blank" rel="noopener">互联网协议（二）</a>。<br>原文已经很通俗易懂的描述整个模型的来龙去脉，这里同样是自己做个总结和整理（图文均参考自上面两篇）。</p>
+    <p>本意是想了解下http协议的，发现对以前学习的计算机网络忘得差不多了。于是乎就重新学习了个。网上的文章有些很书本化的叨叨，没看进去，刚好看到阮叔的两篇很不错——<a href="http://www.ruanyifeng.com/blog/2012/06/internet_protocol_suite_part_ii.html" target="_blank" rel="noopener">互联网协议（一）</a>和<a href="http://www.ruanyifeng.com/blog/2012/06/internet_protocol_suite_part_ii.html" target="_blank" rel="noopener">互联网协议（二）</a>。<br>原文已经很通俗易懂的描述整个模型的来龙去脉，这里同样是自己做个总结和整理（图文均参考自上面两篇）。</p>
 <h2 id="1-前面的话"><a href="#1-前面的话" class="headerlink" title="1 前面的话"></a>1 前面的话</h2><h3 id="1-1-OSI七层模型"><a href="#1-1-OSI七层模型" class="headerlink" title="1.1 OSI七层模型"></a>1.1 OSI七层模型</h3><p>OSI：Open System Interconnection，开放系统互联。顾名思义，就是国际标准化组织（ISO，International Standard Organization）定义的关于不同计算机互联的标准。</p>
 <p>OSI模型中，把网络通信分为7层，从下（接近硬件）到上（接近用户）分别是：<em>物理层（Physical layer）、数据链路层（Data-link layer）、网络层（Network layer），传输层（Transport layer）、会话层（Session layer）、表示层（Presentation layer）和应用层（Application layer）</em>。</p>
 <p>分层的意义在于：</p>
 <blockquote>
+<p>*每一层都是为了完成某一种功能，同一层要遵守共同规则——也就是协议（Protocol）；</p>
 <ul>
-<li>每一层都是为了完成某一种功能，同一层要遵守共同规则——也就是协议（Protocol）；</li>
 <li>和楼层类似，互联网的分层，每一层都要靠下一层来提供服务</li>
 </ul>
 </blockquote>
 <h3 id="1-2-TCP-IP-五层模型"><a href="#1-2-TCP-IP-五层模型" class="headerlink" title="1.2 TCP/IP 五层模型"></a>1.2 TCP/IP 五层模型</h3><p>除了OSI的七层模型，常见的还有TCP/IP的五层模型（阮叔文章用的就是五层模型），五层模型把 <em>会话层</em> 和 <em>表示层</em> 直接包含到应用层当中，即：<em>物理层、数据链路层、网络层、传输层、应用层</em>。</p>
 <p>借用阮叔一张图，更直观些:<br><img src="http://image.beekka.com/blog/201205/bg2012052902.png" alt="五层模型"></p>
-<h2 id="2-每一层都在干什么？"><a href="#2-每一层都在干什么？" class="headerlink" title="2 每一层都在干什么？"></a>2 每一层都在干什么？</h2><p>既然知道了大概分层，接下来我们就看看每一层都在做些什么事，它们之间有什么联系和区别。<br>下面我们从最底层开始：</p>
+<h2 id="2-每一层都在干什么？"><a href="#2-每一层都在干什么？" class="headerlink" title="2 每一层都在干什么？"></a>2 每一层都在干什么？</h2><p>既然知道了大概分层，接下来我们就看看每一层都在做些什么事，它们之间有什么联系和区别。下面我们从最底层开始：</p>
 <h3 id="2-1-物理层"><a href="#2-1-物理层" class="headerlink" title="2.1 物理层"></a>2.1 物理层</h3><p>物理层，也被叫做实体层。</p>
 <p>电脑组网，首先得把它们连接起来，连接的方式可以用光缆（类似于光纤入户的光纤）、电缆（电传播）、双绞线（我们常说的网线、水晶头），还有现在最常用的无线电波（无线网wifi）等等。</p>
 <blockquote>
 <blockquote>
-<blockquote>
 <p>所以在物理层，负责把电脑连接起来，主要规定了网络的电气特性（就是跟连接工具传输相关的一些特征），在这一层传送的是0和1这样的电信号。</p>
-</blockquote>
 </blockquote>
 </blockquote>
 <h3 id="2-2-数据链接层"><a href="#2-2-数据链接层" class="headerlink" title="2.2 数据链接层"></a>2.2 数据链接层</h3><p>通过物理层，获得0和1的信号，但单纯的0、1毫无意义，这时候就需要确定解读0、1的方式，对电信号进行分组——<strong>以太网协议</strong>。</p>
@@ -112,9 +111,7 @@
 <p><em>TIPS：广播的方式，是早期集线器（Hub）经典发送数据方式。后来有了交换机，交换机比较聪明：如果电脑A和B是第一次通信，那就只能广播下，但这之后，交换机会记住电脑A和B的这条通信连线，下一次A和B通信就可以直接走这条线。——慢慢就得到了内部MAC地址表。</em></p>
 <blockquote>
 <blockquote>
-<blockquote>
 <p>总结下数据链路层，负责把0、1电信号通过<strong>以太网协议</strong>（按照报头和数据两部分）进行分组，借助网卡中的<strong>MAC地</strong>址实现一对一的数据传送。</p>
-</blockquote>
 </blockquote>
 </blockquote>
 <h3 id="2-3-网络层"><a href="#2-3-网络层" class="headerlink" title="2.3 网络层"></a>2.3 网络层</h3><p>在数据链路层，已经有MAC地址，按理应该可以实现任何两台电脑传播。但实际上，靠MAC地址只能实现同一个<strong>子网络</strong>内的电的数据传输，不同的子网络之间必须通过<strong>路由</strong>（原理未知，代以后探究）。<br>这就好比，世界这么大，楼房那么多，为了方便分类管理，我们一般都会划分小区（子网络），同一个小区靠楼栋门牌号（MAC地址）就可以找到具体户主了，但是不同小区仅靠门牌号就没有用了。</p>
@@ -126,33 +123,26 @@
 <p><em>补充<strong>ARP协议</strong>：</em><br>ARP:Address Resolution Protocol,地址解析协议。<br>我们知道，现在的数据包包含两类地址——MAC地址和IP地址。一般情况下，对方的IP地址是已知的（之后查到原理再补充进来，这里直接用结论），但对方的MAC地址是未知的。这时候，我们就想通过IP地址来获取MAC地址。<br>（1）如果两台主机不再一个子网络，那只能通过连接两个子网络的“网关”（gateway）处理了，这个不表。<br>（2）如果在同一个子网路，ARP协议就派上用场了。ARP协议发出一个数据包（同样包含在以太网数据包中），里面包含已知的对方IP地址，而对方MAC地址未知，就写上是FF:FF:FF:FF:FF:FF,来表示这是一个“广播”地址。数据包以广播方式发送出去后，各个主机提取里面的IP地址和自己的比对，相同就做出回复，把自己的MAC地址发送回去，否则就丢弃这个数据包。</p>
 <blockquote>
 <blockquote>
-<blockquote>
 <p>老样子，来总结下网络层的工作：为了确定两个主机是否在一个子网络，出现了<strong>IP地址</strong>，IP地址有一部分代表网络部分，这部分相同则说明在同一个子网络；而<strong>子网掩码</strong>是为了确定IP地址哪一部分属于网络部分。</p>
-</blockquote>
 </blockquote>
 </blockquote>
 <p>最后补充一张我们无比眼熟的TCP/IP协议属性设置图，就可以看到我们提及到的IP地址和子网掩码。<br><img src="http://image.beekka.com/blog/201206/bg2012061111.png" alt="ICP/ip属性设置图"></p>
 <h3 id="2-4-传输层"><a href="#2-4-传输层" class="headerlink" title="2.4 传输层"></a>2.4 传输层</h3><p>通过上面的几层，我们已经能实现主机和主机之间的通信了。但回想下我们玩电脑，开网页、开QQ、开视频……那请问接收到的数据包到底是要送到网页显示还是qq聊天窗口还是视频窗口呢？<br>所以我们需要一个参数来确定接收到的数据包是归属哪个进程（进程就是指，我们正在使用的一些程序，比如浏览器、qq等）。<br>这个参数就是<strong>“端口”</strong>——也就是每一个使用网卡的程序的编号。</p>
-<p>端口是一个0-65535之间的整数，当你启动一个程序（比如qq），系统会随机分配一个端口号给它。</p>
-<p>由此可见，我们还需要在传输的数据包里添加一个端口信息。有两种协议可以实现——UDP协议和TCP协议。</p>
+<p>端口是一个0-65535之间的整数，当你启动一个程序（比如qq），系统会随机分配一个端口号给它。由此可见，我们还需要在传输的数据包里添加一个端口信息。有两种协议可以实现——UDP协议和TCP协议。</p>
 <h4 id="（1）UDP协议"><a href="#（1）UDP协议" class="headerlink" title="（1）UDP协议"></a>（1）UDP协议</h4><p>UDP：User Datagram Protocol，用户数据包格式。<br>UDP数据包一样有 <em>标头</em> 和 <em>数据</em> 两部分，标头里就是发出端口和接收端口。把UDP数据包融入到IP数据包的“数据”位置，就形成下图的结构<br><img src="http://image.beekka.com/blog/201205/bg2012052912.png" alt="添加UDP数据包后的传输数据包格式"><br>UDP协议优点：简单、易实现；缺点是：可靠性差，数据发送后，不能知道对方是否收到。因此就有了TCP协议。</p>
 <h4 id="（2）TCP协议"><a href="#（2）TCP协议" class="headerlink" title="（2）TCP协议"></a>（2）TCP协议</h4><p>TCP：Transmission Control Protocol，传输控制协议。<br>为了弥补UDP协议的缺陷，TCP协议时带有确认机制的，也就是说发送数据包后，需要对方返回确认收到信息，若没有确认信息，就会重新发送数据包。<br>TCP数据包格式和UDP数据包格式类似。不过真正的实现过程较为复杂、小号的资源也比较多（有机会再单独看下这个协议实现方式吧）。</p>
-<blockquote>
 <blockquote>
 <blockquote>
 <p>小结下，网络层提供的是“主机到主机”的通信；而传输层提供了“端口到端口”的通信。有了端口，就能实现具体程序与程序之间的通信了。添加端口的协议有UDP协议和TCP协议，UDP简单不可靠、TCP可靠不简单。</p>
 </blockquote>
 </blockquote>
-</blockquote>
 <h3 id="5-应用层"><a href="#5-应用层" class="headerlink" title="5 应用层"></a>5 应用层</h3><p>经过了前面的层层推送，终于抵达了和用户直接相关的应用程序。通过IP地址+MAC地址+端口，我们已经成功让我们使用的某个程序（还是qq吧）收到了数据包，但接下来的重点就是怎么解读这个数据包呢？除了qq，还有邮件、网页等，他们的数据包解读方式一样么？<br>答案当然是不一样的，因为它们的功用不同，需要的数据也不一样，所以不同的应用程序就会有不同的协议太规定其数据格式。通过应用层的一包装，传输的数据包格式就转变成下图这个样子了：<br><img src="http://image.beekka.com/blog/201205/bg2012052913.png" alt="应用层数据包"></p>
-<blockquote>
 <blockquote>
 <blockquote>
 <p>这就是应用层，专门规定应用程序的数据格式。</p>
 </blockquote>
 </blockquote>
-</blockquote>
-<p>以上，就是简略的描述了五层结构怎样一步一步推荐，一步一步增添自己需求的。<br>最后通过一个表格来做一个小结（顺便练习markdown表格语法(^o^)/~）。</p>
+<p>以上，就是简略的描述了五层结构怎样一步一步推荐，一步一步增添自己需求的。<br>最后通过一个表格来做一个小结（顺便练习markdown表格语法。</p>
 <table>
 <thead>
 <tr>
@@ -202,9 +192,9 @@
     <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
   </script>
   <div class="busuanzi center">
-    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
-    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
-    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
   </div>
 
 
