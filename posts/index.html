@@ -125,11 +125,48 @@
     </nav>
 </header>
 <main class="main"> 
-<header class="page-header">
+<header class="page-header"><div class="breadcrumbs"><a href="https://celinewong7.github.io/">Home</a></div>
   <h1>
     Posts
   </h1>
 </header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>20230627 Test Image 3
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>参考文章： Hugo如何在markdown里引用本地图片</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-06-27 14:57:08 +0800 CST'>June 27, 2023</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 20230627 Test Image 3" href="https://celinewong7.github.io/posts/20230627-test-image-3/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>本地引入图片资源2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{% asset_img test.jpg 20230627-test-image-2.md This is an test image %}
+在配置文件设置了 post_asset_folder: true后， hugo new 根本就没有创建一个和md同名的文件夹可以放图片 然后上面所有hugo官方指令也没有什么用。 </p>
+  </div>
+  <footer class="entry-footer"><span title='2023-06-27 14:50:41 +0800 CST'>June 27, 2023</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 本地引入图片资源2" href="https://celinewong7.github.io/posts/20230627-test-image-2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>测试本地引入图片资源方式一
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>尝试把图片放在content同层级的static的文件夹下，然后用相对路径去引入。 但是，失败了。</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-06-27 14:40:22 +0800 CST'>June 27, 2023</span>&nbsp;·&nbsp;1 min</footer>
+  <a class="entry-link" aria-label="post link to 测试本地引入图片资源方式一" href="https://celinewong7.github.io/posts/20230627-test-image/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">
@@ -139,7 +176,7 @@
   <div class="entry-content">
     <p>文件说明 title：文章标题 date：创建时间 draft：是否是草稿。默认true-是草稿，如果希望能发布看到，需要改成false。 其他叨叨叨 接下来就是随便你写点啥了，写入你的灵感、创意、生活纪实、学习笔记啦！</p>
   </div>
-  <footer class="entry-footer"><span title='2023-06-08 10:43:04 +0800 CST'>June 8, 2023</span></footer>
+  <footer class="entry-footer"><span title='2023-06-08 10:43:04 +0800 CST'>June 8, 2023</span>&nbsp;·&nbsp;1 min</footer>
   <a class="entry-link" aria-label="post link to Second" href="https://celinewong7.github.io/posts/second/"></a>
 </article>
 
@@ -151,7 +188,7 @@
   <div class="entry-content">
     <p>Test my first article. </p>
   </div>
-  <footer class="entry-footer"><span title='2023-06-07 20:38:26 +0800 CST'>June 7, 2023</span></footer>
+  <footer class="entry-footer"><span title='2023-06-07 20:38:26 +0800 CST'>June 7, 2023</span>&nbsp;·&nbsp;1 min</footer>
   <a class="entry-link" aria-label="post link to First" href="https://celinewong7.github.io/posts/first/"></a>
 </article>
     </main>

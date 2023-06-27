@@ -6,7 +6,35 @@
     <description>Recent content in Posts on Celine的异开世界</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 08 Jun 2023 10:43:04 +0800</lastBuildDate><atom:link href="https://celinewong7.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Jun 2023 14:57:08 +0800</lastBuildDate><atom:link href="https://celinewong7.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>20230627 Test Image 3</title>
+      <link>https://celinewong7.github.io/posts/20230627-test-image-3/</link>
+      <pubDate>Tue, 27 Jun 2023 14:57:08 +0800</pubDate>
+      
+      <guid>https://celinewong7.github.io/posts/20230627-test-image-3/</guid>
+      <description>参考文章： Hugo如何在markdown里引用本地图片</description>
+    </item>
+    
+    <item>
+      <title>本地引入图片资源2</title>
+      <link>https://celinewong7.github.io/posts/20230627-test-image-2/</link>
+      <pubDate>Tue, 27 Jun 2023 14:50:41 +0800</pubDate>
+      
+      <guid>https://celinewong7.github.io/posts/20230627-test-image-2/</guid>
+      <description>{% asset_img test.jpg 20230627-test-image-2.md This is an test image %}
+在配置文件设置了 post_asset_folder: true后， hugo new 根本就没有创建一个和md同名的文件夹可以放图片 然后上面所有hugo官方指令也没有什么用。 </description>
+    </item>
+    
+    <item>
+      <title>测试本地引入图片资源方式一</title>
+      <link>https://celinewong7.github.io/posts/20230627-test-image/</link>
+      <pubDate>Tue, 27 Jun 2023 14:40:22 +0800</pubDate>
+      
+      <guid>https://celinewong7.github.io/posts/20230627-test-image/</guid>
+      <description>尝试把图片放在content同层级的static的文件夹下，然后用相对路径去引入。 但是，失败了。</description>
+    </item>
+    
     <item>
       <title>Second</title>
       <link>https://celinewong7.github.io/posts/second/</link>
