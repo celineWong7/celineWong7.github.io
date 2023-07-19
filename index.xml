@@ -6,7 +6,25 @@
     <description>Recent content on Celine的异开世界</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 27 Jun 2023 14:57:08 +0800</lastBuildDate><atom:link href="https://celinewong7.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 19 Jul 2023 10:42:10 +0800</lastBuildDate><atom:link href="https://celinewong7.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>20230719 Test</title>
+      <link>https://celinewong7.github.io/posts/20230719-test/</link>
+      <pubDate>Wed, 19 Jul 2023 10:42:10 +0800</pubDate>
+      
+      <guid>https://celinewong7.github.io/posts/20230719-test/</guid>
+      <description>test github Actions.</description>
+    </item>
+    
+    <item>
+      <title>20230628 Test Github Action</title>
+      <link>https://celinewong7.github.io/posts/20230628-test-github-action/</link>
+      <pubDate>Wed, 28 Jun 2023 16:02:59 +0800</pubDate>
+      
+      <guid>https://celinewong7.github.io/posts/20230628-test-github-action/</guid>
+      <description>17:14 补充了push的分支为main，再试一下能自动发布吗？</description>
+    </item>
+    
     <item>
       <title>Hugo引入本地图片的方式</title>
       <link>https://celinewong7.github.io/posts/20230627-test-image-3/</link>
@@ -51,8 +69,8 @@
       <pubDate>Wed, 07 Jun 2023 20:38:26 +0800</pubDate>
       
       <guid>https://celinewong7.github.io/about/</guid>
-      <description> 大家好，我是Celine~
-简介 出生地：大山大河 爱好：吃好吃的 擅长 HTML JavaScript </description>
+      <description>大家好，我是Celine~
+简介 出生地：大山大河 爱好：吃好吃的 擅长 HTML JavaScript 联系我 嘿嘿嘿~ 哈哈哈~ 哎哎哎。。。 再来一次。。。</description>
     </item>
     
     <item>
